@@ -26,14 +26,14 @@ import java.util.Scanner;
 public class FileWriteExample {
     public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter text to write to file: ");
-        String text = sc.nextLine();
+        System.out.print("Enter your favorite quote: ");
+        String quote = sc.nextLine();
 
-        BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt"));
-        writer.write(text);
+        BufferedWriter writer = new BufferedWriter(new FileWriter("quote.txt"));
+        writer.write(quote);
         writer.close();
 
-        System.out.println("Data written to output.txt successfully.");
+        System.out.println("Quote saved to quote.txt successfully.");
     }
 }
 
@@ -42,10 +42,10 @@ import java.io.*;
 
 public class FileReadExample {
     public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader("output.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader("quote.txt"));
         String line;
         while ((line = reader.readLine()) != null) {
-            System.out.println(line);
+            System.out.println("Read line: " + line);
         }
         reader.close();
     }
@@ -55,20 +55,20 @@ public class FileReadExample {
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class StudentList {
+public class CityList {
     public static void main(String[] args) {
-        ArrayList<String> students = new ArrayList<>();
+        ArrayList<String> cities = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter student names (type 'end' to stop):");
+        System.out.println("Enter city names (type 'done' to stop):");
         while (true) {
-            String name = sc.nextLine();
-            if (name.equalsIgnoreCase("end")) break;
-            students.add(name);
+            String city = sc.nextLine();
+            if (city.equalsIgnoreCase("done")) break;
+            cities.add(city);
         }
 
-        System.out.println("Student Names:");
-        for (String s : students) {
-            System.out.println(s);
+        System.out.println("Cities Entered:");
+        for (String c : cities) {
+            System.out.println(c);
         }
     }
 }
@@ -76,50 +76,52 @@ public class StudentList {
 //Exercise 25: HashMap Example
 import java.util.*;
 
-public class StudentMap {
+public class ProductMap {
     public static void main(String[] args) {
-        HashMap<Integer, String> students = new HashMap<>();
+        HashMap<Integer, String> products = new HashMap<>();
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Enter student ID and name (type -1 to stop):");
+        System.out.println("Enter product ID and name (type -1 to stop):");
         while (true) {
-            System.out.print("ID: ");
+            System.out.print("Product ID: ");
             int id = sc.nextInt();
             if (id == -1) break;
             sc.nextLine(); // consume newline
-            System.out.print("Name: ");
+            System.out.print("Product Name: ");
             String name = sc.nextLine();
-            students.put(id, name);
+            products.put(id, name);
         }
 
-        System.out.print("Enter ID to lookup: ");
-        int lookupId = sc.nextInt();
-        System.out.println("Student: " + students.getOrDefault(lookupId, "Not Found"));
+        System.out.print("Enter ID to search: ");
+        int searchId = sc.nextInt();
+        System.out.println("Product: " + products.getOrDefault(searchId, "Not Found"));
     }
 }
 
+
 //Exercise 26: Thread Creation
-class MyThread extends Thread {
+class PrintThread extends Thread {
     public void run() {
-        System.out.println("Running in " + Thread.currentThread().getName());
+        System.out.println("Running thread: " + Thread.currentThread().getName());
     }
 
     public static void main(String[] args) {
-        MyThread t1 = new MyThread();
-        MyThread t2 = new MyThread();
+        PrintThread t1 = new PrintThread();
+        PrintThread t2 = new PrintThread();
         t1.start();
         t2.start();
     }
 }
+
 
 //Exercise 27: Lambda Expressions
 import java.util.*;
 
 public class LambdaSort {
     public static void main(String[] args) {
-        List<String> names = Arrays.asList("John", "Alice", "Bob", "David");
-        Collections.sort(names, (a, b) -> a.compareToIgnoreCase(b));
-        names.forEach(System.out::println);
+        List<String> animals = Arrays.asList("Elephant", "Cat", "Dog", "Bear");
+        Collections.sort(animals, (a, b) -> a.compareToIgnoreCase(b));
+        animals.forEach(System.out::println);
     }
 }
 
@@ -129,31 +131,31 @@ import java.util.stream.Collectors;
 
 public class StreamFilter {
     public static void main(String[] args) {
-        List<Integer> numbers = Arrays.asList(10, 15, 20, 25, 30);
-        List<Integer> even = numbers.stream()
-                .filter(n -> n % 2 == 0)
+        List<Integer> numbers = Arrays.asList(5, 8, 13, 22, 27, 36);
+        List<Integer> odd = numbers.stream()
+                .filter(n -> n % 2 != 0)
                 .collect(Collectors.toList());
 
-        even.forEach(System.out::println);
+        odd.forEach(System.out::println);
     }
 }
 
 //Exercise 29: Records
-record Person(String name, int age) {}
+record Book(String title, int pages) {}
 
 import java.util.*;
 
 public class RecordExample {
     public static void main(String[] args) {
-        List<Person> people = List.of(
-            new Person("Alice", 22),
-            new Person("Bob", 30),
-            new Person("Eve", 18)
+        List<Book> books = List.of(
+            new Book("Java Basics", 120),
+            new Book("Advanced Java", 300),
+            new Book("Spring Guide", 180)
         );
 
-        people.stream()
-              .filter(p -> p.age() >= 21)
-              .forEach(System.out::println);
+        books.stream()
+             .filter(b -> b.pages() > 150)
+             .forEach(System.out::println);
     }
 }
 
@@ -161,17 +163,17 @@ public class RecordExample {
 public class PatternSwitch {
     public static void checkType(Object obj) {
         switch (obj) {
-            case String s -> System.out.println("String: " + s);
-            case Integer i -> System.out.println("Integer: " + i);
-            case Double d -> System.out.println("Double: " + d);
+            case String s -> System.out.println("This is a string: " + s);
+            case Integer i -> System.out.println("This is an integer: " + i);
+            case Boolean b -> System.out.println("This is a boolean: " + b);
             default -> System.out.println("Unknown type");
         }
     }
 
     public static void main(String[] args) {
-        checkType("Hello");
-        checkType(123);
-        checkType(3.14);
+        checkType("World");
+        checkType(42);
+        checkType(true);
     }
 }
 
@@ -181,12 +183,12 @@ import java.sql.*;
 public class JDBCConnect {
     public static void main(String[] args) {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:sqlite:students.db");
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:library.db");
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM students");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM books");
 
             while (rs.next()) {
-                System.out.println(rs.getInt("id") + ": " + rs.getString("name"));
+                System.out.println(rs.getInt("id") + ": " + rs.getString("title"));
             }
 
             conn.close();
@@ -199,23 +201,23 @@ public class JDBCConnect {
 //Exercise 32: Insert and Update Operations in JDBC
 import java.sql.*;
 
-public class StudentDAO {
+public class BookDAO {
     Connection conn;
 
-    StudentDAO() throws SQLException {
-        conn = DriverManager.getConnection("jdbc:sqlite:students.db");
+    BookDAO() throws SQLException {
+        conn = DriverManager.getConnection("jdbc:sqlite:library.db");
     }
 
-    void insertStudent(int id, String name) throws SQLException {
-        PreparedStatement ps = conn.prepareStatement("INSERT INTO students (id, name) VALUES (?, ?)");
+    void insertBook(int id, String title) throws SQLException {
+        PreparedStatement ps = conn.prepareStatement("INSERT INTO books (id, title) VALUES (?, ?)");
         ps.setInt(1, id);
-        ps.setString(2, name);
+        ps.setString(2, title);
         ps.executeUpdate();
     }
 
-    void updateStudent(int id, String name) throws SQLException {
-        PreparedStatement ps = conn.prepareStatement("UPDATE students SET name=? WHERE id=?");
-        ps.setString(1, name);
+    void updateBook(int id, String title) throws SQLException {
+        PreparedStatement ps = conn.prepareStatement("UPDATE books SET title=? WHERE id=?");
+        ps.setString(1, title);
         ps.setInt(2, id);
         ps.executeUpdate();
     }
@@ -224,20 +226,20 @@ public class StudentDAO {
 // Exercise 33: Transaction Handling in JDBC
 import java.sql.*;
 
-public class BankTransfer {
+public class WalletTransfer {
     public static void main(String[] args) {
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:bank.db")) {
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:wallet.db")) {
             conn.setAutoCommit(false);
 
             Statement stmt = conn.createStatement();
-            stmt.executeUpdate("UPDATE accounts SET balance = balance - 100 WHERE id = 1");
-            stmt.executeUpdate("UPDATE accounts SET balance = balance + 100 WHERE id = 2");
+            stmt.executeUpdate("UPDATE wallets SET balance = balance - 50 WHERE user_id = 101");
+            stmt.executeUpdate("UPDATE wallets SET balance = balance + 50 WHERE user_id = 102");
 
             conn.commit();
-            System.out.println("Transaction successful");
+            System.out.println("Transfer successful");
 
         } catch (SQLException e) {
-            System.out.println("Transaction failed: " + e.getMessage());
+            System.out.println("Transfer failed: " + e.getMessage());
         }
     }
 }
@@ -332,7 +334,7 @@ public class Demo {
   public Demo();
     Code:
        0: aload_0
-       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       1: invokespecial #1                  
        4: return
 
   public static int square(int);
@@ -344,10 +346,10 @@ public class Demo {
 
   public static void main(java.lang.String[]);
     Code:
-       0: getstatic     #2                  // Field java/lang/System.out:Ljava/io/PrintStream;
+       0: getstatic     #2                  
        3: iconst_5
-       4: invokestatic  #3                  // Method square:(I)I
-       7: invokevirtual #4                  // Method java/io/PrintStream.println:(I)V
+       4: invokestatic  #3                 
+       7: invokevirtual #4                 
       10: return
 }
 
@@ -372,9 +374,10 @@ java -jar cfr.jar Hello.class
 
 // Exercise 39: Reflection in Java
 import java.lang.reflect.*;
+
 public class ReflectionDemo {
     public static void main(String[] args) throws Exception {
-        Class<?> cls = Class.forName("java.lang.String");
+        Class<?> cls = Class.forName("java.util.ArrayList");
         Method[] methods = cls.getDeclaredMethods();
         for (Method m : methods) {
             System.out.println(m.getName());
@@ -397,12 +400,12 @@ import java.util.*;
 
 public class CallableExample {
     public static void main(String[] args) throws Exception {
-        ExecutorService executor = Executors.newFixedThreadPool(3);
+        ExecutorService executor = Executors.newFixedThreadPool(2);
 
         List<Callable<String>> tasks = List.of(
-            () -> "Task 1",
-            () -> "Task 2",
-            () -> "Task 3"
+            () -> "Download Task",
+            () -> "Upload Task",
+            () -> "Backup Task"
         );
 
         List<Future<String>> results = executor.invokeAll(tasks);
@@ -413,3 +416,4 @@ public class CallableExample {
         executor.shutdown();
     }
 }
+
