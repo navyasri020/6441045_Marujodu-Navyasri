@@ -7,24 +7,24 @@ public class HelloWorld {
 
 // Exercise 2: Simple Calculator
 import java.util.Scanner;
-public class Calculator {
+public class SimpleCalc {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter first number: ");
-        double a = sc.nextDouble();
+        double x = sc.nextDouble();
         System.out.print("Enter second number: ");
-        double b = sc.nextDouble();
+        double y = sc.nextDouble();
         System.out.print("Choose operation (+ - * /): ");
         char op = sc.next().charAt(0);
-        double result = 0;
+        double res = 0;
         switch (op) {
-            case '+': result = a + b; break;
-            case '-': result = a - b; break;
-            case '*': result = a * b; break;
-            case '/': result = b != 0 ? a / b : Double.NaN; break;
+            case '+': res = x + y; break;
+            case '-': res = x - y; break;
+            case '*': res = x * y; break;
+            case '/': res = y != 0 ? x / y : Double.NaN; break;
             default: System.out.println("Invalid operator"); return;
         }
-        System.out.println("Result: " + result);
+        System.out.println("Result: " + res);
     }
 }
 
@@ -41,13 +41,13 @@ public class EvenOdd {
 
 // Exercise 4: Leap Year Checker
 import java.util.Scanner;
-public class LeapYear {
+public class YearChecker {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter a year: ");
-        int year = sc.nextInt();
-        boolean leap = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
-        System.out.println(leap ? "Leap Year" : "Not a Leap Year");
+        System.out.print("Type a year: ");
+        int inputYear = sc.nextInt();
+        boolean isLeap = (inputYear % 4 == 0 && inputYear % 100 != 0) || (inputYear % 400 == 0);
+        System.out.println(isLeap ? "Leap Year" : "Not a Leap Year");
     }
 }
 
@@ -65,30 +65,32 @@ public class MultiplicationTable {
 }
 
 // Exercise 6: Data Type Demonstration
-public class DataTypes {
+public class DataTypeOverview {
     public static void main(String[] args) {
-        int i = 10;
-        float f = 3.14f;
-        double d = 3.14159;
-        char c = 'A';
-        boolean b = true;
-        System.out.println("int: " + i);
-        System.out.println("float: " + f);
-        System.out.println("double: " + d);
-        System.out.println("char: " + c);
-        System.out.println("boolean: " + b);
+        int age = 25;
+        float pi = 3.14f;
+        double gravity = 9.80665;
+        char grade = 'B';
+        boolean isJavaFun = true;
+
+        System.out.println("int: " + age);
+        System.out.println("float: " + pi);
+        System.out.println("double: " + gravity);
+        System.out.println("char: " + grade);
+        System.out.println("boolean: " + isJavaFun);
     }
 }
 
 // Exercise 7: Type Casting
-public class TypeCasting {
+public class CastingDemo {
     public static void main(String[] args) {
-        double d = 9.99;
-        int i = (int) d;
-        System.out.println("Double to int: " + i);
-        int j = 7;
-        double dj = j;
-        System.out.println("Int to double: " + dj);
+        double temp = 98.6;
+        int approxTemp = (int) temp;
+        System.out.println("Double to int: " + approxTemp);
+
+        int score = 42;
+        double preciseScore = score;
+        System.out.println("Int to double: " + preciseScore);
     }
 }
 
@@ -102,77 +104,86 @@ public class OperatorPrecedence {
 
 // Exercise 9: Grade Calculator
 import java.util.Scanner;
-public class GradeCalculator {
+public class GradeEval {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter marks (0-100): ");
-        int marks = sc.nextInt();
-        char grade = marks >= 90 ? 'A' : marks >= 80 ? 'B' : marks >= 70 ? 'C' : marks >= 60 ? 'D' : 'F';
+        System.out.print("Enter your score (0-100): ");
+        int score = sc.nextInt();
+        char grade = score >= 90 ? 'A' :
+                     score >= 80 ? 'B' :
+                     score >= 70 ? 'C' :
+                     score >= 60 ? 'D' : 'F';
         System.out.println("Grade: " + grade);
     }
 }
 
 // Exercise 10: Number Guessing Game
 import java.util.*;
-public class NumberGuessingGame {
+public class GuessMyNumber {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        Random rand = new Random();
-        int target = rand.nextInt(100) + 1, guess;
+        Scanner input = new Scanner(System.in);
+        Random rnd = new Random();
+        int secret = rnd.nextInt(100) + 1, attempt;
+
         do {
-            System.out.print("Guess the number (1-100): ");
-            guess = sc.nextInt();
-            if (guess < target) System.out.println("Too low");
-            else if (guess > target) System.out.println("Too high");
-            else System.out.println("Correct!");
-        } while (guess != target);
+            System.out.print("Guess a number (1-100): ");
+            attempt = input.nextInt();
+            if (attempt < secret) System.out.println("Too low!");
+            else if (attempt > secret) System.out.println("Too high!");
+            else System.out.println("Correct guess!");
+        } while (attempt != secret);
     }
 }
 
 // Exercise 11: Factorial Calculator
 import java.util.Scanner;
-public class Factorial {
-    public static int factorial(int n) {
-        return (n == 0) ? 1 : n * factorial(n - 1);
+public class FactorialFinder {
+    public static int computeFactorial(int num) {
+        return (num <= 1) ? 1 : num * computeFactorial(num - 1);
     }
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter a number: ");
-        int num = sc.nextInt();
-        System.out.println("Factorial: " + factorial(num));
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter a positive integer: ");
+        int value = input.nextInt();
+        System.out.println("Factorial is: " + computeFactorial(value));
     }
 }
 
 // Exercise 12: Method Overloading
-public class MethodOverload {
-    static int add(int a, int b) {
-        return a + b;
+public class OverloadAddition {
+    static int sum(int x, int y) {
+        return x + y;
     }
-    static double add(double a, double b) {
-        return a + b;
+
+    static double sum(double x, double y) {
+        return x + y;
     }
-    static int add(int a, int b, int c) {
-        return a + b + c;
+
+    static int sum(int x, int y, int z) {
+        return x + y + z;
     }
+
     public static void main(String[] args) {
-        System.out.println(add(2, 3));
-        System.out.println(add(2.5, 3.5));
-        System.out.println(add(1, 2, 3));
+        System.out.println(sum(5, 7));
+        System.out.println(sum(4.2, 3.8));
+        System.out.println(sum(1, 2, 3));
     }
 }
 
 // Exercise 13: Recursive Fibonacci
 import java.util.Scanner;
-public class FibonacciRecursive {
-    static int fibonacci(int n) {
-        if (n <= 1) return n;
-        return fibonacci(n - 1) + fibonacci(n - 2);
+public class RecursiveFibo {
+    static int getFibo(int n) {
+        if (n == 0) return 0;
+        if (n == 1) return 1;
+        return getFibo(n - 1) + getFibo(n - 2);
     }
+
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter n: ");
-        int n = sc.nextInt();
-        System.out.println("Fibonacci: " + fibonacci(n));
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter the position of Fibonacci number: ");
+        int pos = input.nextInt();
+        System.out.println("Fibonacci number is: " + getFibo(pos));
     }
 }
 
@@ -209,49 +220,54 @@ public class ReverseString {
 
 // Exercise 16: Palindrome Checker
 import java.util.Scanner;
-public class PalindromeString {
+public class PalindromeCheck {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter a string: ");
-        String str = sc.nextLine().replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
-        String rev = new StringBuilder(str).reverse().toString();
-        System.out.println(str.equals(rev) ? "Palindrome" : "Not a Palindrome");
+        Scanner input = new Scanner(System.in);
+        System.out.print("Type a string to check: ");
+        String text = input.nextLine().replaceAll("[\\W_]", "").toLowerCase();
+        String reversedText = new StringBuilder(text).reverse().toString();
+        System.out.println(text.equals(reversedText) ? "It's a Palindrome" : "Not a Palindrome");
     }
 }
 
 // Exercise 17: Class and Object Creation
-class Car {
-    String make, model;
-    int year;
-    Car(String make, String model, int year) {
-        this.make = make;
-        this.model = model;
-        this.year = year;
+class Vehicle {
+    String brand, type;
+    int manufactureYear;
+
+    Vehicle(String brand, String type, int year) {
+        this.brand = brand;
+        this.type = type;
+        this.manufactureYear = year;
     }
-    void displayDetails() {
-        System.out.println("Make: " + make + ", Model: " + model + ", Year: " + year);
+
+    void showInfo() {
+        System.out.println("Brand: " + brand + ", Type: " + type + ", Year: " + manufactureYear);
     }
+
     public static void main(String[] args) {
-        Car car1 = new Car("Toyota", "Corolla", 2022);
-        car1.displayDetails();
+        Vehicle v1 = new Vehicle("Honda", "Civic", 2021);
+        v1.showInfo();
     }
 }
 
 // Exercise 18: Inheritance Example
-class Animal {
-    void makeSound() {
-        System.out.println("Some sound");
+class Creature {
+    void sound() {
+        System.out.println("Generic sound");
     }
 }
-class Dog extends Animal {
-    void makeSound() {
-        System.out.println("Bark");
+
+class Cat extends Creature {
+    void sound() {
+        System.out.println("Meow");
     }
+
     public static void main(String[] args) {
-        Animal a = new Animal();
-        a.makeSound();
-        Dog d = new Dog();
-        d.makeSound();
+        Creature c = new Creature();
+        c.sound();
+        Cat cat = new Cat();
+        cat.sound();
     }
 }
 
