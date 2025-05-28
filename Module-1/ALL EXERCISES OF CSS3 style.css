@@ -1,203 +1,174 @@
-< ------ Exercise 1 ----- >
-
-HTML (index.html):
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Community Event</title>
-  <!-- Embedded CSS -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local Events Hub</title>
+  <!-- Inline Style -->
   <style>
     body {
-      background-color: #f0f0f0;
+      background: #f9f9f9;
     }
   </style>
   <!-- External CSS -->
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="main.css">
 </head>
 <body>
-  <h1 style="color: red;">Welcome to Our Local Events!</h1> <!-- Inline style -->
-  <h2 id="mainHeader">Upcoming Events</h2>
-  <div class="eventCard">...</div>
+  <header>
+    <h1 style="color: crimson;">Explore Local Events!</h1>
+    <h2 id="headerTitle">Featured Activities</h2>
+  </header>
+  <section class="card">...</section>
 </body>
 </html>
-External CSS (styles.css):
-/* Header styles */
-#mainHeader {
-  font-size: 24px;
-  color: navy;
-}
-/* Card styles */
-.eventCard {
-  border: 1px solid #ccc;
-  padding: 20px;
-  margin: 10px;
-  background-color: white;
+
+/* main.css */
+
+/* ID Selector */
+#headerTitle {
+  font-size: 26px;
+  color: #003366;
 }
 
-< ----- Exercise 2 ----- >
-/* Style for main CTA button */
-.cta-button {
-  background-color: #007BFF;
-  color: white;
-  padding: 10px 20px;
+/* Class Selector */
+.card {
+  background: #fff;
+  padding: 18px;
+  margin: 12px;
+  border: 1px solid #ddd;
+}
+
+/* CTA Button */
+.btn-cta {
+  background: #0056b3;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 6px;
   border: none;
-  border-radius: 5px;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
-< ----- Exercise 3 ----- >
-/* Reset margin and padding */
+/* General Reset */
 * {
   margin: 0;
   padding: 0;
 }
-/* Style all h2 elements */
+
+/* Headings */
 h2 {
-  color: teal;
-  margin-bottom: 10px;
-}
-/* ID selector */
-#mainHeader {
-  font-size: 28px;
-  font-weight: bold;
-}
-/* Class selector */
-.eventCard {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  margin: 10px;
-  padding: 15px;
-}
-/* Grouping selector */
-h3, p {
-  font-family: Arial, sans-serif;
-  color: #333;
+  color: #008080;
+  margin-bottom: 12px;
 }
 
-< ----- Exercise 4 ------ >
-/* Text color using HEX */
+/* Grouped Selectors */
+h3, p {
+  font-family: 'Verdana', sans-serif;
+  color: #444;
+}
+
+/* Color & Background */
 h1 {
-  color: #004488;
+  color: #005577;
 }
-/* Background using RGBA */
+
 body {
-  background-color: rgba(240, 240, 255, 0.9);
-}
-/* Background image with fallback */
-body {
-  background-color: #eee;
-  background-image: url('background.jpg');
+  background-color: #f8f8ff;
+  background-image: url('images/bg.jpg');
   background-size: cover;
 }
-/* Gradient on section headers */
+
 section h2 {
-  background: linear-gradient(to right, #6a11cb, #2575fc);
+  background-image: linear-gradient(to right, #1e3c72, #2a5298);
   color: white;
-  padding: 10px;
+  padding: 8px;
 }
 
-< ----- exercise 5 ----- >
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
 body {
-  font-family: 'Roboto', sans-serif;
-  line-height: 1.6;
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.5;
 }
-p.description {
-  font-size: 1.1em;
+p.lead {
+  font-size: 1.05em;
   text-align: justify;
-  letter-spacing: 0.5px;
-  text-transform: none;
+  letter-spacing: 0.4px;
 }
 
-< ----- Exercise 6 ----- >
+/* Link States */
 nav a:link {
-  color: #0077cc;
+  color: #0066cc;
 }
 nav a:visited {
-  color: purple;
+  color: darkmagenta;
 }
 nav a:hover {
   text-decoration: underline;
 }
 nav a:active {
-  color: red;
-}
-nav ul {
-  list-style: none;
-  padding: 0;
-}
-nav li {
-  margin: 5px 0;
+  color: tomato;
 }
 
-< ----- Exercise 7 ----- >
+nav ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+nav li {
+  margin: 6px 0;
+}
+
+/* Table Styling */
 table {
   width: 100%;
   border-collapse: collapse;
 }
 th, td {
-  border: 1px solid #ccc;
+  border: 1px solid #bbb;
   padding: 10px;
   text-align: center;
 }
 tr:nth-child(even) {
-  background-color: #f9f9f9;
+  background-color: #f0f0f0;
 }
 
-< ----- Exercise 8 ----- >
-.eventCard {
-  border: 1px solid #ddd;
-  margin: 20px;
-  padding: 15px;
-}
-/* Outline example */
+/* Outline & Visibility */
 input:focus {
-  outline: 2px solid #007BFF;
+  outline: 3px solid #3399ff;
 }
-/* Visibility comparison */
 .hidden {
   visibility: hidden;
 }
-.not-displayed {
+.invisible {
   display: none;
 }
 
-< ----- Exercise 9 ----- >
-.news-section {
+/* Column Layout */
+.column-section {
   column-count: 2;
-  column-gap: 30px;
-  column-rule: 1px solid gray;
+  column-gap: 25px;
+  column-rule: 1px dashed #aaa;
 }
 
-< ----- Exercise 10 ----- >
-/* Base styles */
+/* Responsive Design */
 nav ul {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
-/* Responsive styles */
 @media (max-width: 768px) {
   nav ul {
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
   }
-  img {
+  img.responsive {
     width: 100%;
     height: auto;
   }
   body {
-    font-size: 14px;
+    font-size: 0.9rem;
   }
 }
-/* Use flexible units */
 .container {
-  width: 90%;
-  max-width: 1200px;
+  width: 95%;
+  max-width: 1100px;
   margin: auto;
 }
-
-< ----- Exercise 11 ----- >
-/* Nothing required in code; use DevTools to: */
-/* - Simulate screen sizes with device toolbar */
-/* - Inspect and live-edit styles */
-/* - Check Network tab for CSS file loading */
